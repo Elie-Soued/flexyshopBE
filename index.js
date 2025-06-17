@@ -1,16 +1,15 @@
 import express from "express";
+import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
 
-// Setup __dirname for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Enable CORS for all origins
+app.use(cors());
 
-// Absolute path to your image directory
+// Serve images from your image directory
 const imagePath = "/home/pilex/assets/flexyshop/images";
-
 app.use(
   "/images",
   express.static(imagePath, {
@@ -20,8 +19,6 @@ app.use(
     },
   })
 );
-
-app.get("/", (_, res) => res.send("Hello World"));
 
 app.listen(6000, () => {
   console.log("Server is running on port 6000");
