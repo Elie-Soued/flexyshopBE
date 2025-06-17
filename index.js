@@ -3,6 +3,8 @@ import path from "path";
 
 const app = express();
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 app.use(
   "/images",
   express.static(path.join(__dirname, "images"), {
